@@ -96,3 +96,12 @@ y = X @ c + np.random.normal(0, .5, x.shape)
 
 plt.figure()
 plt.plot(x, y, 'k.')
+
+# Comparison of models on complex data versus simple linear data
+RR = Ridge(alpha=0.0005, fit_intercept=True)
+RR.fit(X, y)
+print(RR.intercept_, RR.coef_)
+# LASSO doesn't work as well on complex data
+L1 = Lasso(alpha=0.0005, fit_intercept=True)
+L1.fit(X, y)
+print(L1.intercept_, L1.coef_)
