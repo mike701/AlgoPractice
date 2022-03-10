@@ -84,3 +84,15 @@ L1.fit(partialpressure, resistance)
 print(L1.intercept_, L1.coef_)
 
 # needs additional work, example of use for these models
+
+# More complex data of the form y=0.1x^4+0.5x^3+0.5x^2+x+2
+N = 100
+x = np.random.uniform(-5, 2, (N, 1))
+o = np.ones(x.shape)
+X = np.concatenate((x**4, x**3, x**2, x**1, o), axis=1)
+c = np.asarray([.1, .5, .5, 1, 2])[:, None]
+print(x.shape, X.shape, c.shape)
+y = X @ c + np.random.normal(0, .5, x.shape)
+
+plt.figure()
+plt.plot(x, y, 'k.')
