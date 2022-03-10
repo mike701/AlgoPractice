@@ -105,3 +105,36 @@ print(RR.intercept_, RR.coef_)
 L1 = Lasso(alpha=0.0005, fit_intercept=True)
 L1.fit(X, y)
 print(L1.intercept_, L1.coef_)
+
+# ? Why are the value differing from above
+L1 = Lasso(alpha=1, fit_intercept=True)
+L1.fit(X, y)
+print(L1.intercept_, L1.coef_)
+
+# let's get a random permutation of the data split
+rand_order = np.random.permutation(N)
+
+# use the random permutation to reorder our data.
+# our pairs of data (x,y) are still tied together, just new order:
+# (x1,y1), (x2,y2), (x3,y3), (x4,y4), (x5,y5)
+# becomes:
+# (x5,y5), (x2,y2), (x3,y3), (x1,y1), (x4,y4)
+
+X_split = [None]*10
+y_split = [None]*10
+x_split = [None]*10
+labels = np.zeros((N, 1))
+
+x_reordered = x[rand_order]
+y_reordered = y[rand_order]
+
+for i in range(10):
+    start_num = i*10
+    end_num = i*10+10
+    idx = rand_order[start_num:end_num]
+    X_split[i] = X[idx, :]
+    y_split[i] = y[idx]
+    labels[start_num:end_num] = i
+
+plt.figure()
+plt.scatter(x_reordered, y_reordered, c=labels)
