@@ -1,4 +1,3 @@
-# import scikit.learn as sklearn
 from sklearn.linear_model import LinearRegression
 import scipy.io as sio
 import numpy.matlib as nm
