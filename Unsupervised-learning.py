@@ -94,7 +94,7 @@ c = np.asarray([.1, .5, .5, 1, 2])[:, None]
 print(x.shape, X.shape, c.shape)
 y = X @ c + np.random.normal(0, .5, x.shape)
 
-plt.figure()
+plt.figure(5)
 plt.plot(x, y, 'k.')
 
 # Comparison of models on complex data versus simple linear data
@@ -136,5 +136,6 @@ for i in range(10):
     y_split[i] = y[idx]
     labels[start_num:end_num] = i
 
-plt.figure()
+plt.figure(6)
 plt.scatter(x_reordered, y_reordered, c=labels)
+plt.show()
