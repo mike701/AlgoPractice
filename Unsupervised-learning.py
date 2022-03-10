@@ -1,3 +1,4 @@
+from sklearn.linear_model import LinearRegression, Ridge, Lasso, RidgeCV
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
 import scipy.io as sio
@@ -67,3 +68,19 @@ plt.scatter(slope_, intercept_, s=10, c=mse**.2, cmap='viridis')
 plt.plot(slope_true, intercept_true, 'ro')
 plt.show()
 # The yellows at the edges are the most extreme losses and the darker areas are the lowest loss
+
+# Ridge(alpha=1.0, *, fit_intercept=True, normalize=False, copy_X=True, max_iter=None, tol=0.001, solver='auto', random_state=None)  #Content of ridge function
+# Creates model only for Ridge and LASSO regression
+
+
+# Ridge Regression
+RR = Ridge(alpha=0.0005, fit_intercept=True)
+RR.fit(partialpressure, resistance)
+print(RR.intercept_, RR.coef_)
+
+# LASSO
+L1 = Lasso(alpha=0.0005, fit_intercept=True)
+L1.fit(partialpressure, resistance)
+print(L1.intercept_, L1.coef_)
+
+# needs additional work, example of use for these models
